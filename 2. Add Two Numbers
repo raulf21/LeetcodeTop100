@@ -1,0 +1,53 @@
+'''Approach:
+One approach to solving this problem is to iterate through both linked lists simultaneously, adding the values of each node and storing the carry value.
+
+Here's an outline of the algorithm:
+
+Initialize a dummy node to represent the head of the resulting linked list, and a carry variable to 0.
+Create a pointer for each linked list and set it to the head of the respective linked list.
+Iterate through both pointers while both pointers are not None:
+a. Add the values of the current nodes and the carry value.
+b. Store the carry value for the next iteration.
+c. Create a new node with the value of the sum mod 10 and append it to the resulting linked list.
+d. Move the pointers to the next node.
+Handle the remaining digits from one of the linked lists if any, and append the carry value.
+Return the resulting linked list (the dummy node's next)
+This solution has a time complexity of O(max(m, n)) and a space complexity of O(max(m, n)) where m and n are the number of digits in each linked list.
+
+Runtime:
+72 ms
+Beats
+72.99%
+Memory:
+14.1 MB
+Beats
+9.12%
+
+
+'''
+
+
+
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummyNode = ListNode()
+        curr = dummyNode
+        carry = 0
+        
+        while l1 or l2 or carry:
+            a = l1.val if l1 else 0
+            b = l2.val if l2 else 0
+            
+            
+            new_val = a + b + carry
+            print(new_val)
+            carry = new_val // 10
+            print(carry)
+            new_val = new_val % 10
+            print(new_val)
+            
+            curr.next = ListNode(new_val)
+            curr = curr.next
+            l1 = l1.next if l1 else 0
+            l2 = l2.next if l2 else 0
+        return dummyNode.next

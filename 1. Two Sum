@@ -1,0 +1,32 @@
+'''Approach: 
+One approach to solving this problem is to use a hashmap to store the elements of the array as keys and their indices as values.
+
+Initialize an empty hashmap.
+Iterate through the array and for each element, calculate the difference between the target and the current element, let's call it diff.
+Check if the diff is already in the hashmap, if it is, return the current element index and the index stored in the hashmap as the solution.
+If the diff is not in the hashmap, add the current element and its index to the hashmap.
+If no solution is found, return an empty list or an appropriate error message.
+This solution has a time complexity of O(n) and a space complexity of O(n) where n is the length of the input array.
+
+'''
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap = {}
+        for i, num in enumerate(nums):
+            diff = target - num
+            if diff in hashmap:
+                return [hashmap[diff],i]
+            hashmap[num]=i
+        return []
+
+'''Runtime:
+46 ms
+Beats
+99.93%
+Memory
+15.1 MB
+Beats
+46.9%
+'''

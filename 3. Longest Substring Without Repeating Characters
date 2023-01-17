@@ -1,0 +1,27 @@
+'''Approach:
+One approach to solving this problem is to use a sliding window technique.
+
+Here's an outline of the algorithm:
+
+Initialize a variable max_length to store the length of the longest substring without repeating characters, and two pointers left and right to represent the start and end of the current substring.
+Create a set to store the characters in the current substring.
+Iterate through the string s with the right pointer, while the right pointer is less than the length of the string:
+a. If the character at the right pointer is not in the set, add it to the set and update max_length with the maximum of the current max_length and the size of the set.
+b. If the character at the right pointer is in the set, remove the character at the left pointer from the set and move the left pointer to the right.
+Return max_length
+This solution has a time complexity of O(n) and a space complexity of O(k) where n is the length of the input string, and k is the size of the character set.'''
+
+
+def lengthOfLongestSubstring(s: str) -> int:
+    max_length = 0
+    substring = set()
+    i, j = 0, 0
+    while j < len(s):
+        if s[j] not in substring:
+            substring.add(s[j])
+            max_length = max(max_length, len(substring))
+            j += 1
+        else:
+            substring.remove(s[i])
+            i += 1
+    return max_length
