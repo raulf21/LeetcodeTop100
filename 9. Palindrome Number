@@ -1,0 +1,22 @@
+'''The approach used in the provided code is to reverse the input integer x and compare it to the original integer. The algorithm works as follows:
+
+Initialize a variable og to store the original input integer and a variable back_x to store the reversed integer.
+Use a while loop to iterate through the digits of the input integer x, starting from the least significant digit.
+In each iteration, use the modulus operator to extract the last digit of the input integer and add it to the back_x variable.
+Use integer division operator to remove the last digit from the input integer.
+Compare the reversed integer back_x to the original input integer og and return True if they are equal else return False.
+The time complexity of this solution is O(log(n)) where n is the number of digits in the input integer x, as in the worst case, we iterate through all the digits of the number.
+The space complexity is O(1) as we are only using a few variables to store the original and reversed integer.
+This approach is a simple and effective approach to check whether the given number is a Palindrome or not.
+'''
+
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        og = x
+        back_x = 0
+        
+        while x > 0:
+            back_x = (back_x * 10 ) + (x % 10)
+            x = x // 10
+        return og==back_x

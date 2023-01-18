@@ -1,0 +1,23 @@
+'''Approach:
+The approach used in this algorithm is to iterate through the input string and add each character to a list of strings, corresponding to the different rows in the zigzag pattern. The algorithm uses an index variable to keep track of the current row, and a step variable to determine whether the next character should be added to the next row in an upward or downward direction.
+The algorithm starts by initializing the index variable to 0 and the step variable to 1, which means that the next character will be added to the first row of the zigzag pattern. As the algorithm iterates through the input string, it checks the current value of the index variable. If the index is 0, it means that the algorithm is at the topmost row of the zigzag pattern, and the step variable is set to 1 to move the index down to the next row. If the index is equal to the number of rows - 1, it means that the algorithm is at the bottommost row of the zigzag pattern, and the step variable is set to -1 to move the index up to the previous row.
+This approach allows the algorithm to construct the zigzag pattern by iterating through the input string once and adding each character to the appropriate row in the pattern.
+The time complexity of this algorithm is O(n), where n is the length of the input string.It is also worth mentioning that the space complexity of this algorithm is O(n).
+'''
+
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows ==1 or numRows>=len(s):
+            return s
+        L = [''] * numRows
+        index, step = 0,1
+
+        for x in s:
+            L[index] +=x
+            if index == 0:
+                step =1
+            elif index == numRows -1:
+                step =-1
+            index +=step
+        return ''.join(L)
+
